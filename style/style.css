@@ -1,0 +1,2747 @@
+body {
+    margin: 0;
+    font-family: Tahoma, sans-serif;
+    overflow: hidden;
+}
+
+.login-screen-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #4a5d4e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.login-window {
+    width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #3c4b3e;
+    padding: 20px;
+    border: 2px solid #a2c490;
+    box-sizing: border-box;
+    user-select: none;
+    transition: height 0.2s, width 0.2s, padding 0.2s, border-width 0.2s;
+    z-index: 1000;
+}
+
+.login-window.minimized {
+    height: 35px;
+    width: 200px;
+    overflow: hidden;
+    padding: 0;
+    border-width: 1px;
+}
+
+.login-window.minimized .login-content,
+.login-window.minimized .buttons {
+    display: none;
+}
+
+.header-bar {
+    background: #2c332a;
+    color: #a2c490;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    font-weight: bold;
+    cursor: grab;
+}
+
+.window-controls button {
+    background: #4a5d4e;
+    border: none;
+    color: #fff;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.login-content label {
+    display: block;
+    margin-top: 10px;
+    color: #cfcfcf;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 97%;
+    padding: 5px;
+    background: #2c332a;
+    border: 1px solid #555;
+    color: #fff;
+}
+
+.remember {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.remember input[type="checkbox"] {
+    appearance: none;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    background-color: #2c332a;
+    border: 1px solid #555;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.remember input[type="checkbox"]:checked::before {
+    content: "✓";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #d9b956;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.remember label {
+    position: relative;
+    top: -1px;
+}
+
+.remember.checked label {
+    color: #d9b956;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.login-btn,
+.cancel-btn {
+    background: #7a837a;
+    border: none;
+    color: #fff;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#mainUI {
+    background-color: #4a5d4e;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.top-bar {
+    background-color: #3c4b3e;
+    color: #a2c490;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-menu {
+    display: flex;
+    gap: 15px;
+}
+
+.main-menu-item {
+    color: #c0e0b0;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.main-menu-item:hover {
+    color: #fff;
+}
+
+.window-controls-main-ui {
+    display: flex;
+    gap: 1px;
+}
+
+.main-ui-control-button {
+    background-color: #3c4b3e;
+    border: 1px solid #2c332a;
+    color: #a2c490;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.1s, border-color 0.1s, color 0.1s;
+}
+
+.main-ui-control-button:hover,
+.main-ui-control-button.close-main-ui:hover {
+    background-color: #4a5d4e;
+    border-color: #a2c490;
+    color: #fff;
+}
+
+.secondary-nav-bar {
+    background-color: #3c4b3e;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2c332a;
+}
+
+.secondary-nav-bar button,
+.secondary-nav-bar .nav-profile-button {
+    background-color: #3e4b3c;
+    border: 1px solid #2a332c;
+    color: #c0c0c0;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.2);
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.left-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.nav-arrow-button,
+.steam-button {
+    background-color: #4a5d4e;
+    color: #c0e0b0;
+    border: 1px solid #555;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: 2px;
+    height: 28px;
+    border-radius: 2px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.nav-arrow-button:hover,
+.steam-button:hover {
+    background-color: #5a6d5e;
+    color: #fff;
+    border-color: #a2c490;
+}
+
+.steam-button.active {
+    background-color: #3c4b3e;
+    color: #d9b956;
+    border-top: 1px solid #2c332a;
+    border-left: 1px solid #2c332a;
+    border-bottom: 1px solid #4a5d4e;
+    border-right: 1px solid #4a5d4e;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5), inset 0 -1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.right-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-box {
+    display: flex;
+    align-items: center;
+    background: #2c332a;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-size: 13px;
+    gap: 5px;
+}
+
+.profile-pic {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border: 1px solid #777;
+}
+
+.zoom-button,
+.icon-button {
+    background: transparent;
+    border: none;
+    color: #cfcfcf;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoom-button-new {
+    background-image: url('../images/zoom.png');
+}
+
+.zoom-button:hover,
+.icon-button:hover {
+    color: #fff;
+}
+
+.icon-button svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.main-content {
+    padding: 20px;
+    flex-grow: 1;
+    border: 1px solid #88888881;
+    margin: 10px 20px;
+    color: #cfcfcf;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+}
+
+.bottom-bar {
+    background-color: #3c4b3e;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #2c332a;
+    color: #c0e0b0;
+    font-size: 13px;
+}
+
+.add-game-button,
+.friends-chat-button {
+    background-color: #4a5d4e;
+    color: #c0e0b0;
+    border: 1px solid #555;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 2px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.add-game-button:hover,
+.friends-chat-button:hover {
+    background-color: #5a6d5e;
+    color: #fff;
+    border-color: #a2c490;
+}
+
+.downloads-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+}
+
+.downloads-info span {
+    font-size: 13px;
+    color: #c0e0b0;
+}
+
+.manage-link {
+    color: #a2c490;
+    text-decoration: none;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.manage-link:hover {
+    text-decoration: underline;
+}
+
+/* Profile Box */
+.profile-info-box {
+    background-color: #3c4b3e;
+    border: 1px solid #2c332a;
+    width: 500px;
+    height: 160px; /* Ajuste a altura conforme o conteúdo se expandir */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    z-index: 1001;
+    position: absolute;
+    top: 3%;
+    left: 37%;
+    transition: height 0.2s, width 0.2s, padding 0.2s, border-width 0.2s;
+}
+
+.profile-info-box.minimized-profile {
+    height: 35px;
+    width: 200px;
+    overflow: hidden;
+    padding: 0;
+    border-width: 1px;
+}
+
+.profile-info-box.minimized-profile .profile-body,
+.profile-info-box.minimized-profile .edit-profile-button {
+    display: none;
+}
+
+.profile-header {
+    background-color: #2c332a;
+    color: #a2c490;
+    font-family: Tahoma, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px;
+    display: flex;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2c332a;
+}
+
+.profile-controls {
+    display: flex;
+    gap: 7px;
+}
+
+.profile-control-button {
+    background-color: #3c4b3e;
+    border: 1px solid #2c332a;
+    color: #a2c490;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.1s, border-color 0.1s, color 0.1s;
+}
+
+.profile-control-button:hover {
+    background-color: #4a5d4e;
+    border-color: #a2c490;
+    color: #fff;
+}
+
+.profile-body {
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    position: relative;
+}
+
+.profile-picture-container {
+    width: 100px;
+    height: 100px;
+    background-color: #2c332a;
+    border: 1px solid #555;
+    flex-shrink: 0;
+}
+
+.profile-main-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-text-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    color: #cfcfcf;
+    align-items: flex-start;
+}
+
+.profile-name {
+    color: #cfcfcf;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.profile-bio-text {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.edit-profile-button {
+    background-color: #4a5d4e;
+    color: #c0e0b0;
+    border: 1px solid #555;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 2px;
+    margin-top: 0px;
+    margin-left: auto;
+}
+
+.edit-profile-button:hover {
+    background-color: #5a6d5e;
+    color: #fff;
+    border-color: #a2c490;
+}
+
+.level-display-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.profile-level-text {
+    color: #cfcfcf;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.profile-level-badge {
+    border: 2px solid #f7931e;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.profile-level-badge span {
+    font-size: 15px;
+    color: #fff;
+}
+
+.profile-footer {
+    background-color: #2c332a;
+    padding: 5px;
+    border-top: 1px solid #2c332a;
+}
+
+.profile-progress-bar {
+    background-color: #4a5d4e;
+    height: 8px;
+    border: 1px solid #555;
+    width: 100%;
+}
+
+.nav-icon-button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin-left: -3px;
+    font-size: 18px;
+    color: #c0c0c0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 70%;
+}
+
+.nav-profile-button {
+    padding: 4px 8px;
+    margin-left: -3px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.nav-profile-button .profile-pic {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.nav-profile-button span {
+    color: #c0c0c0;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+}
+
+.notification-button {
+    background-image: url('../images/notification.png');
+}
+
+.zoom-button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin-left: 5px;
+    font-size: 18px;
+    color: #c0c0c0;
+    background-color: #3e4b3c;
+    border: 1px solid #2a332c;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.2);
+    transition: background-color 0.15s ease;
+}
+
+.zoom-button:hover {
+    background-color: #4a5c48;
+}
+
+.news-button {
+    background-image: url('../images/megaphone.png');
+}
+
+.hl-decoration {
+    position: absolute;
+    left: 10px;
+    bottom: 0px;
+    z-index: 0;
+    width: 150px;
+    height: auto;
+}
+
+/* CONSOLE CS 1.6 STYLE */
+.console-box {
+    position: absolute;
+    width: 600px;
+    height: 530px;
+    background-color: #3e4b3c;
+    border: 1px solid #2a332c;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    z-index: 1002;
+    font-family: 'Consolas', 'Monaco', monospace;
+    color: #c0c0c0;
+    top: 250px;
+    left: calc(50% - 325px);
+    transform: none;
+    overflow: hidden;
+    min-width: 500px;
+    min-height: 200px;
+    transition: height 0.2s, width 0.2s, padding 0.2s, border-width 0.2s;
+    resize: none; /* Controlled by JS */
+    overflow: hidden; /* Hide scrollbars that appear with resize:both */
+}
+
+.console-box.minimized-console {
+    height: 35px;
+    width: 200px;
+    overflow: hidden;
+    padding: 0;
+    border-width: 1px;
+}
+.console-box.minimized-console .console-body { /* Esconder console-body para minimizar */
+    display: none;
+}
+
+
+.console-header {
+    background-color: #2b3529;
+    border-bottom: 1px solid #1a2019;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: bold;
+    color: #a2c490;
+    font-family: Tahoma, sans-serif;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.console-header-icon {
+    display: none;
+    width: 16px;
+    height: auto;
+    margin-right: 5px;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.console-header span {
+    flex-grow: 1;
+}
+
+.console-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.console-control-button {
+    background-color: #3c4b3e;
+    border: 1px solid #2a332c;
+    color: #c0c0c0;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.2);
+    transition: background-color 0.15s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.console-control-button:hover {
+    background-color: #4a5c48;
+}
+
+.console-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #3e4b3c;
+    overflow-y: auto;
+    position: relative; /* Para que o input-area fique no final */
+}
+
+.console-output {
+    flex-grow: 1;
+    font-size: 11px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #4a5c48 #3e4b3c;
+    /* Remover padding-bottom, agora o input-area está em um fluxo normal */
+}
+
+.console-output::-webkit-scrollbar {
+    width: 8px;
+}
+
+.console-output::-webkit-scrollbar-track {
+    background: #3e4b3c;
+    border-radius: 4px;
+}
+
+.console-output::-webkit-scrollbar-thumb {
+    background-color: #4a5c48;
+    border-radius: 4px;
+    border: 1px solid #3e4b3c;
+}
+
+.console-output p {
+    margin: 0 0 5px 0;
+    padding: 0;
+    color: #c0c0c0;
+    line-height: 1.2;
+}
+
+.console-output .console-link {
+    color: #a2c490;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.console-output .console-link:hover {
+    color: #a2c490;
+}
+
+.console-input-area {
+    display: flex;
+    width: 100%;
+    padding-top: 10px; /* Espaço entre o output e o input */
+    border-top: 1px solid #2a332c; /* Borda no topo */
+    background-color: #3e4b3c; /* Fundo para a área do input */
+    box-sizing: border-box; /* Inclui padding e border na largura/altura */
+}
+
+.console-input {
+    flex-grow: 1;
+    background-color: #2b3529;
+    border: 1px solid #1a2019;
+    color: #c0c0c0;
+    padding: 5px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 11px;
+    outline: none;
+    margin-right: 8px;
+}
+
+.console-submit-btn {
+    background-color: #3e4b3c;
+    border: 1px solid #2a332c;
+    color: #c0c0c0;
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.2);
+    transition: background-color 0.15s ease;
+}
+
+.console-submit-btn:hover {
+    background-color: #4a5c48;
+}
+
+/* Novo container para posicionar as sugestões FORA do console-box */
+.console-suggestions-outer-container {
+    position: fixed; /* Fixado para ficar acima de tudo */
+    z-index: 1003; /* Acima do console-box */
+    /* top, left, width serão definidos via JavaScript */
+    pointer-events: none; /* Não interfere com cliques quando escondido */
+    /* REMOVA esta linha se ela estiver no seu CSS: display: none !important; */
+    /* O JS será o responsável por adicionar/remover a classe .hidden para mostrar/esconder. */
+}
+.console-suggestions { /* Estilos para o dropdown de sugestões */
+    position: relative; /* Relativo ao console-suggestions-outer-container */
+    width: auto; /* A largura será definida via JS */
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: #2c332a; /* Fundo do dropdown */
+    border: 1px solid #1a2019; /* Borda do dropdown */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Sombra para baixo */
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    color: #c0c0c0;
+    padding: 5px 0;
+    box-sizing: border-box;
+    pointer-events: auto; /* Habilita cliques nas sugestões */
+}
+
+.console-suggestions .suggestion-item {
+    padding: 3px 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.console-suggestions .suggestion-item:hover,
+.console-suggestions .suggestion-item.selected {
+    background-color: #4a5d4e;
+    color: #fff;
+}
+
+
+.console-button {
+    margin-left: 0px;
+}
+
+.copy-feedback-dynamic {
+    position: fixed;
+    background-color: #3e4b3c;
+    border: 1px solid #2a332c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 13px;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: fadeAndRise 1.5s ease-out forwards;
+}
+
+
+.music-player-open-button {
+    margin-left: 0px;
+}
+
+
+.music-player-box.minimized-player {
+    height: 35px;
+    width: 200px;
+    overflow: hidden;
+    padding: 0;
+    border-width: 1px;
+}
+.music-player-box.minimized-player .player-body,
+.music-player-box.minimized-player .player-footer {
+    display: none;
+}
+
+.player-header {
+    background-color: #2b3529;
+    border-bottom: 1px solid #1a2019;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: bold;
+    color: #a2c490;
+    font-family: Tahoma, sans-serif;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.player-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.player-control-button {
+    background-color: #3c4b3e;
+    border: 1px solid #2a332c;
+    color: #c0c0c0;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.2);
+    transition: background-color 0.15s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.player-control-button:hover {
+    background-color: #5a6d5e;
+    border-color: #a2c490;
+}
+
+.player-body {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.album-art-container {
+    width: 60px;
+    height: 60px;
+    background-color: #2c332a;
+    border: 1px solid #555;
+    flex-shrink: 0;
+}
+
+.album-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.song-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.song-artist {
+    font-size: 12px;
+    color: #a2c490;
+}
+
+.player-footer {
+    padding: 5px 10px 10px;
+    background-color: #3e4b3c;
+    border-top: 1px solid #2a332c;
+}
+
+.progress-bar-container {
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #555;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.progress-bar:hover {
+    opacity: 1;
+}
+
+.progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #a2c490;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.progress-bar::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #a2c490;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.player-buttons-volume {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playback-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.icon-button-player {
+    background-color: #4a5d4e;
+    border: 1px solid #555;
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.1s, border-color 0.1s;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 60%;
+}
+
+.icon-button-player:hover {
+    background-color: #5a6d5e;
+    border-color: #a2c490;
+}
+
+.trackback-icon {
+    background-image: url('../images/trackback.png');
+}
+
+.play-icon {
+    background-image: url('../images/play.png');
+}
+
+.pause-icon {
+    background-image: url('../images/pause.png');
+}
+
+.trackfwd-icon {
+    background-image: url('../images/trackfwd.png');
+}
+
+.volume-icon-button {
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    height: 20px;
+    background-size: 100%;
+    background-image: url('../images/volume.png');
+    transition: background-image 0.1s;
+}
+
+.volume-icon-button.muted-icon {
+    background-image: url('../images/muted.png');
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.volume-slider {
+    width: 80px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #555;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.volume-slider:hover {
+    opacity: 1;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #a2c490;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #a2c490;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* --- ADICIONADO AO FINAL DO CSS --- */
+
+/* --- Estilos da Lista de Amigos (Tema 2010) --- */
+.friends-list-window {
+    position: absolute;
+    width: 260px;
+    background-color: #3c4b3e; /* Cor de fundo escura, tema Steam */
+    border: 1px solid #2c332a; /* Borda do tema Steam */
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    /* bottom: 70px;  Removido para ser controlado via JS */
+    right: 20px;
+    max-height: 500px;
+    border-radius: 4px;
+    overflow: hidden;
+    font-family: Tahoma, sans-serif; /* Fonte do tema Steam */
+    min-width: 200px; /* Largura mínima para redimensionar */
+    min-height: 150px; /* Altura mínima para redimensionar */
+    transition: height 0.2s, width 0.2s; /* Transição para minimizar */
+    resize: none; /* Controlado por JS */
+    overflow: hidden; /* Esconder scrollbars que aparecem com resize:both */
+    z-index: 1004; /* Ajustado para ficar acima do music player, mas o JS garantirá o posicionamento */
+}
+
+.friends-list-window.minimized {
+    height: 30px;
+    width: 200px;
+}
+
+.friends-list-window.minimized .friends-body,
+.friends-list-window.minimized .friends-footer {
+    display: none;
+}
+
+/* O header da friends-list usa um estilo próprio */
+.friends-header {
+    background-color: #2c332a; /* Header do tema Steam */
+    color: #a2c490; /* Cor do texto do tema Steam */
+    padding: 6px 10px;
+    cursor: grab;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2c332a; /* Borda do tema Steam */
+    font-size: 13px;
+    font-family: Tahoma, sans-serif; /* Mantido para garantir a fonte */
+}
+
+.friends-header .window-controls button {
+    background: #4a5d4e; /* Botão de controle do tema Steam */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.friends-body {
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    color: #cfcfcf; /* Cor do texto do tema Steam */
+    background-color: #3c4b3e; /* Fundo do corpo do tema Steam */
+}
+
+/* Estilos para o seu próprio perfil na friendlist */
+.friend-item-me {
+    background-color: #2c332a; /* Fundo item "me" do tema Steam */
+    padding: 8px 10px;
+    position: relative; /* Para permitir o efeito de "sair da caixa" */
+    overflow: hidden; /* Garante que a imagem ampliada não cause scroll */
+    transition: background-color 0.1s; /* Mantenha transição para o hover, mas definiremos a cor */
+}
+
+.friend-item-me:hover {
+    background-color: #2c332a; /* Garante que o fundo não mude no hover */
+}
+
+/* Aplica a transição e o "levantar" APENAS na imagem do avatar dentro do friend-item-me */
+.friend-item-me .friend-avatar {
+    transition: transform 0.2s ease-out; /* Adiciona transição suave para o zoom */
+    cursor: default; /* Padrão para a imagem, será sobrescrito pelo hover específico */
+}
+
+/* Cursor pointer e zoom APENAS quando o mouse está sobre a imagem do avatar */
+.friend-item-me .friend-avatar:hover {
+    transform: scale(1.2); /* Aumenta a imagem em 20% */
+    cursor: pointer; /* Cursor de "clicável" apenas na foto */
+}
+
+/* Garante que o restante do item-me não tenha cursor pointer */
+.friend-item-me .friend-info,
+.friend-item-me .friend-name,
+.friend-item-me .friend-status {
+    cursor: default; /* Volta ao cursor padrão para o texto e info */
+}
+
+
+.friends-body .search-bar-container {
+    background-color: #2c332a; /* Fundo search bar do tema Steam */
+    padding: 8px 10px;
+    border-top: 1px solid #2c332a; /* Borda search bar do tema Steam */
+    border-bottom: 1px solid #4a5d4e; /* Borda search bar do tema Steam */
+}
+
+.friends-body .search-bar-container input {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #2c332a; /* Input background do tema Steam */
+    border: 1px solid #555; /* Input border do tema Steam */
+    color: #cfcfcf; /* Input text color do tema Steam */
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* Scrollbar customizada */
+.friends-body::-webkit-scrollbar { width: 8px; }
+.friends-body::-webkit-scrollbar-track { background: #3c4b3e; }
+.friends-body::-webkit-scrollbar-thumb { background-color: #4a5d4e; border-radius: 4px; }
+
+.friend-category {
+    font-size: 12px;
+    color: #a2c490;
+    text-transform: uppercase;
+    padding: 10px 10px 4px;
+    font-weight: bold;
+}
+
+.friends-body ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.friend-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    transition: background-color 0.1s;
+}
+
+.friend-item:hover {
+    background-color: #4a5d4e; /* Hover do tema Steam */
+}
+
+.friend-avatar {
+    width: 36px;
+    height: 36px;
+    border: 2px solid #2c332a;
+    margin-right: 10px;
+    flex-shrink: 0;
+    border-radius: 0;
+}
+
+.friend-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    line-height: 1.2;
+}
+
+.friend-name {
+    font-size: 14px;
+    color: #cfcfcf;
+    white-space: nowrap;
+}
+
+.friend-status {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.friends-footer {
+    background-color: #2c332a;
+    padding: 8px 10px;
+    border-top: 1px solid #4a5d4e;
+}
+
+.add-friend-button {
+    color: #c0e0b0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Cores de Status para o tema Steam */
+.friends-list-window .status-online { color: #57cbde; }
+/* Ajuste de cor para In-Game (mais forte) */
+.friends-list-window .status-ingame {
+    color: #6ed045; /* Verde mais vibrante */
+    font-weight: bold; /* Opcional: para dar mais destaque */
+}
+.friends-list-window .status-offline { color: #898989; }
+
+.no-transition {
+    transition: none !important;
+}
+
+/* Redimensionamento */
+.resize-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    z-index: 1005;
+}
+
+.bottom-right-resize-handle {
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+}
+
+/* CHAT WINDOW STYLES */
+.chat-window {
+    position: absolute;
+    width: 350px;
+    height: 450px;
+    background-color: #3c4b3e;
+    border: 1px solid #2c332a;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    z-index: 1006;
+    font-family: Tahoma, sans-serif;
+    color: #dcdedf;
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 280px;
+    min-height: 200px;
+}
+
+.chat-window.hidden {
+    display: none !important;
+}
+
+.chat-window.minimized-chat {
+    height: 30px;
+    overflow: hidden;
+}
+
+.chat-window.minimized-chat .chat-body {
+    display: none;
+}
+
+.chat-header {
+    background-color: #2c332a;
+    padding: 6px 0;
+    cursor: grab;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2c332a;
+    font-size: 13px;
+    font-weight: bold;
+    color: #a2c490;
+    position: relative;
+    height: 30px;
+}
+
+.chat-header .window-controls.chat-window-controls {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 2px;
+    background: transparent;
+    padding: 0;
+}
+
+.chat-header .window-controls button {
+    background: #4a5d4e;
+    border: 1px solid #2c332a;
+    color: #dcdedf;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-header .window-controls button:hover {
+    background-color: #5a6d5e;
+    border-color: #a2c490;
+}
+
+.chat-tabs {
+    display: flex;
+    height: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex-grow: 1;
+    padding-right: 60px;
+}
+
+.chat-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.chat-tab {
+    background-color: #3e4b3c;
+    color: #c0c0c0;
+    padding: 6px 12px;
+    border-right: 1px solid #2c332a;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.1s, color 0.1s, border-bottom 0.1s;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.chat-tab.active {
+    background-color: #4a5d4e;
+    color: #fff;
+    border-bottom: 1px solid #a2c490;
+}
+
+.chat-tab:hover:not(.active) {
+    background-color: #4a5d4e;
+    color: #fff;
+}
+
+.chat-tab .tab-close-button {
+    background: none;
+    border: none;
+    color: #dcdedf;
+    font-size: 14px;
+    margin-left: 5px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.chat-tab .tab-close-button:hover {
+    color: #dcdedf;
+    background: none;
+}
+
+.chat-tab .tab-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.chat-tab .tab-name {
+    /* As cores do nome na aba serão controladas via JS */
+}
+
+
+.chat-body {
+    flex-grow: 1;
+    background-color: #3e4b3c;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.messages-container {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #4a5d4e #3e4b3c;
+}
+
+.messages-container::-webkit-scrollbar { width: 8px; }
+.messages-container::-webkit-scrollbar-track { background: #3e4b3c; }
+.messages-container::-webkit-scrollbar-thumb { background-color: #4a5d4e; border-radius: 4px; }
+
+.chat-message {
+    margin-bottom: 8px;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.chat-message .message-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.chat-message .message-content-wrapper {
+    flex-grow: 1;
+}
+
+.chat-message.self .message-header {
+    color: #90b938;
+}
+
+.chat-message.other .message-header {
+    /* A cor será definida via JS com base no status do amigo */
+}
+
+.chat-message .message-header {
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.chat-message .message-content {
+    font-size: 13px;
+    color: #dcdedf;
+    word-wrap: break-word;
+}
+
+.chat-message .message-time {
+    font-size: 10px;
+    color: #898989;
+    margin-left: 5px;
+}
+
+.chat-message .message-content a {
+    color: #a2c490;
+    text-decoration: underline;
+}
+
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: #2c332a;
+    /* Remover border-top daqui, movido para o wrapper de sugestões */
+}
+
+.chat-input {
+    flex-grow: 1;
+    background-color: #353941;
+    border: 1px solid #2a332c;
+    color: #dcdedf;
+    padding: 6px 10px;
+    border-radius: 3px;
+    font-size: 13px;
+    outline: none;
+    margin-right: 8px;
+}
+
+.send-message-button {
+    background-color: #4a5d4e;
+    border: 1px solid #2a332c;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background-color 0.1s;
+}
+
+.send-message-button:hover {
+    background-color: #5a6d5e;
+}
+
+.chat-icons {
+    display: none; /* Mantém os botões de ícone escondidos */
+}
+
+/* Cores para o nome do usuário no chat e na aba */
+.chat-name-ingame, .chat-tab-name-ingame {
+    color: #a2c490;
+}
+.chat-name-online, .chat-tab-name-online {
+    color: #57cbde;
+}
+.chat-name-offline, .chat-tab-name-offline {
+    color: #898989;
+}
+
+.chat-tab {
+    display: flex !important;
+    min-width: 80px;
+    max-width: 150px;
+    overflow: hidden;
+}
+
+.chat-tab .tab-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.chat-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    flex-grow: 1;
+}
+
+.console-suggestions { /* Estilos para o dropdown de sugestões */
+    position: absolute; /* Relativo ao console-suggestions-outer-container */
+    top: 0; /* Alinhado ao topo do outer-container */
+    left: 0; /* Alinhado à esquerda do outer-container */
+    width: 100%; /* Ocupa a largura total do outer-container */
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: #2c332a; /* Fundo do dropdown */
+    border: 1px solid #1a2019; /* Borda do dropdown */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Sombra para baixo */
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    color: #c0c0c0;
+    padding: 5px 0;
+    box-sizing: border-box;
+    pointer-events: auto; /* Habilita cliques nas sugestões */
+}
+
+.console-suggestions .suggestion-item {
+    padding: 3px 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.console-suggestions .suggestion-item:hover,
+.console-suggestions .suggestion-item.selected {
+    background-color: #4a5d4e;
+    color: #fff;
+}
+
+
+.console-button {
+    margin-left: 0px;
+}
+
+.copy-feedback-dynamic {
+    position: fixed;
+    background-color: #3e4b3c;
+    border: 1px solid #2a332c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 13px;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: fadeAndRise 1.5s ease-out forwards;
+}
+
+@keyframes fadeAndRise {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(-25px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+}
+
+.music-player-open-button {
+    margin-left: 0px;
+}
+
+.music-player-box {
+    position: fixed;
+    width: 300px;
+    height: 165px;
+    background-color: #3e4b3c;
+    border: 1px solid #2a332c;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    z-index: 1003; /* Z-index para o player */
+    color: #c0c0c0;
+    bottom: 20px;
+    right: 20px;
+    overflow: hidden;
+    transition: height 0.2s, width 0.2s, padding 0.2s, border-width 0.2s;
+}
+
+.music-player-box.minimized-player {
+    height: 35px;
+    width: 200px;
+    overflow: hidden;
+    padding: 0;
+    border-width: 1px;
+}
+.music-player-box.minimized-player .player-body,
+.music-player-box.minimized-player .player-footer {
+    display: none;
+}
+
+.player-header {
+    background-color: #2b3529;
+    border-bottom: 1px solid #1a2019;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: bold;
+    color: #a2c490;
+    font-family: Tahoma, sans-serif;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.player-controls {
+    display: flex;
+    gap: 2px;
+}
+
+.player-control-button {
+    background-color: #3c4b3e;
+    border: 1px solid #2a332c;
+    color: #c0c0c0;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.2);
+    transition: background-color 0.15s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.player-control-button:hover {
+    background-color: #5a6d5e;
+    border-color: #a2c490;
+}
+
+.player-body {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.album-art-container {
+    width: 50px;
+    height: 50px;
+    background-color: #2c332a;
+    border: 1px solid #555;
+    flex-shrink: 0;
+}
+
+.album-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.song-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.song-artist {
+    font-size: 11px;
+    color: #a2c490;
+}
+
+.player-footer {
+    padding: 5px 10px 10px;
+    background-color: #3e4b3c;
+    border-top: 1px solid #2a332c;
+}
+
+.progress-bar-container {
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #555;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.progress-bar:hover {
+    opacity: 1;
+}
+
+.progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #a2c490;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.progress-bar::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #a2c490;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.player-buttons-volume {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playback-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.icon-button-player {
+    background-color: #4a5d4e;
+    border: 1px solid #555;
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.1s, border-color 0.1s;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 60%;
+}
+
+.icon-button-player:hover {
+    background-color: #5a6d5e;
+    border-color: #a2c490;
+}
+
+.trackback-icon {
+    background-image: url('../images/trackback.png');
+}
+
+.play-icon {
+    background-image: url('../images/play.png');
+}
+
+.pause-icon {
+    background-image: url('../images/pause.png');
+}
+
+.trackfwd-icon {
+    background-image: url('../images/trackfwd.png');
+}
+
+.volume-icon-button {
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    height: 20px;
+    background-size: 100%;
+    background-image: url('../images/volume.png');
+    transition: background-image 0.1s;
+}
+
+.volume-icon-button.muted-icon {
+    background-image: url('../images/muted.png');
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.volume-slider {
+    width: 80px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #555;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.volume-slider:hover {
+    opacity: 1;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #a2c490;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #a2c490;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* --- ADICIONADO AO FINAL DO CSS --- */
+
+/* --- Estilos da Lista de Amigos (Tema 2010) --- */
+.friends-list-window {
+    position: absolute;
+    width: 250px;
+    background-color: #3c4b3e; /* Cor de fundo escura, tema Steam */
+    border: 1px solid #2c332a; /* Borda do tema Steam */
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    /* bottom: 70px;  Removido para ser controlado via JS */
+    right: 20px;
+    max-height: 500px;
+    border-radius: 4px;
+    overflow: hidden;
+    font-family: Tahoma, sans-serif; /* Fonte do tema Steam */
+    min-width: 200px; /* Largura mínima para redimensionar */
+    min-height: 150px; /* Altura mínima para redimensionar */
+    transition: height 0.2s, width 0.2s; /* Transição para minimizar */
+    resize: none; /* Controlado por JS */
+    overflow: hidden; /* Esconder scrollbars que aparecem com resize:both */
+    z-index: 1004; /* Z-index maior para a lista de amigos para aparecer acima do player */
+}
+
+.friends-list-window.minimized {
+    height: 30px;
+    width: 200px;
+}
+
+.friends-list-window.minimized .friends-body,
+.friends-list-window.minimized .friends-footer {
+    display: none;
+}
+
+/* O header da friends-list usa um estilo próprio */
+.friends-header {
+    background-color: #2c332a; /* Header do tema Steam */
+    color: #a2c490; /* Cor do texto do tema Steam */
+    padding: 6px 10px;
+    cursor: grab;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2c332a; /* Borda do tema Steam */
+    font-size: 13px;
+    font-family: Tahoma, sans-serif; /* Mantido para garantir a fonte */
+}
+
+.friends-header .window-controls button {
+    background: #4a5d4e; /* Botão de controle do tema Steam */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.friends-body {
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    color: #cfcfcf; /* Cor do texto do tema Steam */
+    background-color: #3c4b3e; /* Fundo do corpo do tema Steam */
+}
+
+/* Estilos para o seu próprio perfil na friendlist */
+.friend-item-me {
+    background-color: #2c332a; /* Fundo item "me" do tema Steam */
+    padding: 8px 10px;
+    position: relative; /* Para permitir o efeito de "sair da caixa" */
+    overflow: hidden; /* Garante que a imagem ampliada não cause scroll */
+    transition: background-color 0.1s; /* Mantenha transição para o hover, mas definiremos a cor */
+}
+
+.friend-item-me:hover {
+    background-color: #2c332a; /* Garante que o fundo não mude no hover */
+}
+
+/* Aplica a transição e o "levantar" APENAS na imagem do avatar dentro do friend-item-me */
+.friend-item-me .friend-avatar {
+    transition: transform 0.2s ease-out; /* Adiciona transição suave para o zoom */
+    cursor: default; /* Padrão para a imagem, será sobrescrito pelo hover específico */
+}
+
+/* Cursor pointer e zoom APENAS quando o mouse está sobre a imagem do avatar */
+.friend-item-me .friend-avatar:hover {
+    transform: scale(1.2); /* Aumenta a imagem em 20% */
+    cursor: pointer; /* Cursor de "clicável" apenas na foto */
+}
+
+/* Garante que o restante do item-me não tenha cursor pointer */
+.friend-item-me .friend-info,
+.friend-item-me .friend-name,
+.friend-item-me .friend-status {
+    cursor: default; /* Volta ao cursor padrão para o texto e info */
+}
+
+
+.friends-body .search-bar-container {
+    background-color: #2c332a; /* Fundo search bar do tema Steam */
+    padding: 8px 10px;
+    border-top: 1px solid #2c332a; /* Borda search bar do tema Steam */
+    border-bottom: 1px solid #4a5d4e; /* Borda search bar do tema Steam */
+}
+
+.friends-body .search-bar-container input {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #2c332a; /* Input background do tema Steam */
+    border: 1px solid #555; /* Input border do tema Steam */
+    color: #cfcfcf; /* Input text color do tema Steam */
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* Scrollbar customizada */
+.friends-body::-webkit-scrollbar { width: 8px; }
+.friends-body::-webkit-scrollbar-track { background: #3c4b3e; }
+.friends-body::-webkit-scrollbar-thumb { background-color: #4a5d4e; border-radius: 4px; }
+
+.friend-category {
+    font-size: 12px;
+    color: #a2c490;
+    text-transform: uppercase;
+    padding: 10px 10px 4px;
+    font-weight: bold;
+}
+
+.friends-body ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.friend-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    transition: background-color 0.1s;
+}
+
+.friend-item:hover {
+    background-color: #4a5d4e; /* Hover do tema Steam */
+}
+
+.friend-avatar {
+    width: 36px;
+    height: 36px;
+    border: 2px solid #2c332a;
+    margin-right: 10px;
+    flex-shrink: 0;
+    border-radius: 0;
+}
+
+.friend-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    line-height: 1.2;
+}
+
+.friend-name {
+    font-size: 14px;
+    color: #cfcfcf;
+    white-space: nowrap;
+}
+
+.friend-status {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.friends-footer {
+    background-color: #2c332a;
+    padding: 8px 10px;
+    border-top: 1px solid #4a5d4e;
+}
+
+.add-friend-button {
+    color: #c0e0b0;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Cores de Status para o tema Steam */
+.friends-list-window .status-online { color: #57cbde; }
+/* Ajuste de cor para In-Game (mais forte) */
+.friends-list-window .status-ingame {
+    color: #6ed045; /* Verde mais vibrante */
+    font-weight: bold; /* Opcional: para dar mais destaque */
+}
+.friends-list-window .status-offline { color: #898989; }
+
+.no-transition {
+    transition: none !important;
+}
+
+/* Redimensionamento */
+.resize-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    z-index: 1005;
+}
+
+.bottom-right-resize-handle {
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+}
+
+/* CHAT WINDOW STYLES */
+.chat-window {
+    position: absolute;
+    width: 350px;
+    height: 450px;
+    background-color: #3c4b3e;
+    border: 1px solid #2c332a;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    z-index: 1006;
+    font-family: Tahoma, sans-serif;
+    color: #dcdedf;
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 280px;
+    min-height: 200px;
+}
+
+.chat-window.hidden {
+    display: none !important;
+}
+
+.chat-window.minimized-chat {
+    height: 30px;
+    overflow: hidden;
+}
+
+.chat-window.minimized-chat .chat-body {
+    display: none;
+}
+
+.chat-header {
+    background-color: #2c332a;
+    padding: 6px 0;
+    cursor: grab;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2c332a;
+    font-size: 13px;
+    font-weight: bold;
+    color: #a2c490;
+    position: relative;
+    height: 30px;
+}
+
+.chat-header .window-controls.chat-window-controls {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 2px;
+    background: transparent;
+    padding: 0;
+}
+
+.chat-header .window-controls button {
+    background: #4a5d4e;
+    border: 1px solid #2c332a;
+    color: #dcdedf;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-header .window-controls button:hover {
+    background-color: #5a6d5e;
+    border-color: #a2c490;
+}
+
+.chat-tabs {
+    display: flex;
+    height: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex-grow: 1;
+    padding-right: 60px;
+}
+
+.chat-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.chat-tab {
+    background-color: #3e4b3c;
+    color: #c0c0c0;
+    padding: 6px 12px;
+    border-right: 1px solid #2c332a;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.1s, color 0.1s, border-bottom 0.1s;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.chat-tab.active {
+    background-color: #4a5d4e;
+    color: #fff;
+    border-bottom: 1px solid #a2c490;
+}
+
+.chat-tab:hover:not(.active) {
+    background-color: #4a5d4e;
+    color: #fff;
+}
+
+.chat-tab .tab-close-button {
+    background: none;
+    border: none;
+    color: #dcdedf;
+    font-size: 14px;
+    margin-left: 5px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.chat-tab .tab-close-button:hover {
+    color: #dcdedf;
+    background: none;
+}
+
+.chat-tab .tab-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.chat-tab .tab-name {
+    /* As cores do nome na aba serão controladas via JS */
+}
+
+
+.chat-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #3e4b3c;
+    overflow-y: auto;
+    position: relative; /* Para que o input-area fique no final */
+}
+
+.messages-container {
+    flex-grow: 1;
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #4a5d4e #3e4b3c;
+    /* Remover padding-bottom, agora o input-area está em um fluxo normal */
+}
+
+.messages-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: #3e4b3c;
+    border-radius: 4px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background-color: #4a5d4e;
+    border-radius: 4px;
+    border: 1px solid #3e4b3c;
+}
+
+.chat-message {
+    margin-bottom: 8px;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.chat-message .message-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.chat-message .message-content-wrapper {
+    flex-grow: 1;
+}
+
+.chat-message.self .message-header {
+    color: #90b938;
+}
+
+.chat-message.other .message-header {
+    /* A cor será definida via JS com base no status do amigo */
+}
+
+.chat-message .message-header {
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.chat-message .message-content {
+    font-size: 13px;
+    color: #dcdedf;
+    word-wrap: break-word;
+}
+
+.chat-message .message-time {
+    font-size: 10px;
+    color: #898989;
+    margin-left: 5px;
+}
+
+.chat-message .message-content a {
+    color: #a2c490;
+    text-decoration: underline;
+}
+
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: #2c332a;
+    /* Remover border-top daqui, movido para o wrapper de sugestões */
+}
+
+.chat-input {
+    flex-grow: 1;
+    background-color: #353941;
+    border: 1px solid #2a332c;
+    color: #dcdedf;
+    padding: 6px 10px;
+    border-radius: 3px;
+    font-size: 13px;
+    outline: none;
+    margin-right: 8px;
+}
+
+.send-message-button {
+    background-color: #4a5d4e;
+    border: 1px solid #2a332c;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background-color 0.1s;
+}
+
+.send-message-button:hover {
+    background-color: #5a6d5e;
+}
+
+.chat-icons {
+    display: none; /* Mantém os botões de ícone escondidos */
+}
+
+/* Cores para o nome do usuário no chat e na aba */
+.chat-name-ingame, .chat-tab-name-ingame {
+    color: #a2c490;
+}
+.chat-name-online, .chat-tab-name-online {
+    color: #57cbde;
+}
+.chat-name-offline, .chat-tab-name-offline {
+    color: #898989;
+}
+
+.chat-tab {
+    display: flex !important;
+    min-width: 80px;
+    max-width: 150px;
+    overflow: hidden;
+}
+
+.chat-tab .tab-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.chat-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    flex-grow: 1;
+}
+
+/* Estilos para o Gman Easter Egg */
+#gman-easter-egg {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    opacity: 0;
+    z-index: 999;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Estilos para os headcrabs no mini-jogo */
+.headcrab {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 1002;
+    transition: all 0.2s ease-out;
+}
+
+#headcrab-hunt-score {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px black;
+}
+
+#headcrab-hunt-timer { /* Estilo para o timer do jogo */
+    color: yellow;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px black;
+}
+
+#headcrab-hunt-container > div {
+    font-size: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+}
+
+/* Estilos para o Pop-up "Nothing here, it's empty." */
+.empty-content-popup {
+    position: fixed;
+    top: 15%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    width: 180px; /* Largura um pouco maior */
+    height: 50px; /* Altura definida */
+    background-color: #3c4b3e; /* Cor de fundo do tema Steam */
+    border: 1px solid #a2c490; /* Borda do tema Steam */
+    padding: 2px 3px;
+    color: #cfcfcf; /* Cor do texto */
+    font-family: Tahoma, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 2000; /* Garante que esteja acima de outros elementos */
+    user-select: none;
+    pointer-events: none; /* Não bloqueia cliques atrás dele */
+}
+
+/* Estilos para a caixa de escolha "Add a Game..." */
+.add-game-options {
+    position: absolute; /* Será posicionado via JS */
+    background-color: #3c4b3e;
+    border: 1px solid #2c332a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    z-index: 1005; /* Acima da UI principal, mas abaixo dos popups principais */
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border-radius: 3px;
+    user-select: none;
+    pointer-events: auto; /* Permite cliques nos botões */
+}
+
+.add-game-options .add-game-option {
+    background-color: transparent;
+    border: none;
+    color: #c0e0b0;
+    padding: 8px 15px;
+    text-align: left;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.1s;
+}
+
+.add-game-options .add-game-option:hover {
+    background-color: #4a5d4e;
+    color: #fff;
+}
+
+/* Nova animação para Access Denied - subindo */
+.access-denied-feedback {
+    position: fixed;
+    background-color: #721c24; /* Cor de erro/negativa */
+    border: 1px solid #f5c6cb;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 13px;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: fadeAndRise 1.5s ease-out forwards; /* Reutiliza a animação de subir */
+}
+
+/* Nova animação para Access Denied - descendo (para itens do menu superior) */
+.access-denied-feedback.desce {
+    animation: fadeAndFall 1.5s ease-out forwards;
+}
+
+@keyframes fadeAndFall {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(35px); /* Desce 35px */
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(35px); /* Desce 35px */
+    }
+}
+
+/* Estilos para a janela de Ajuda (Help) */
+.help-window {
+    position: fixed;
+    width: 400px;
+    height: 450px;
+    background-color: #3c4b3e; /* Fundo escuro */
+    border: 1px solid #2a332c; /* Borda */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    z-index: 1000; /* Acima da UI principal, mas abaixo dos popups de notificação */
+    font-family: Tahoma, sans-serif;
+    color: #c0c0c0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in-out; /* Para suavizar o aparecimento */
+}
+
+.help-window .header {
+    background-color: #2b3529;
+    border-bottom: 1px solid #1a2019;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: bold;
+    color: #a2c490;
+    cursor: grab;
+}
+
+.help-window .content {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 1.5;
+    scrollbar-width: thin;
+    scrollbar-color: #4a5c48 #3e4b3c;
+}
+
+.help-window .content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.help-window .content::-webkit-scrollbar-track {
+    background: #3e4b3c;
+    border-radius: 4px;
+}
+
+.help-window .content::-webkit-scrollbar-thumb {
+    background-color: #4a5c48;
+    border-radius: 4px;
+    border: 1px solid #3e4b3c;
+}
+
+.help-window .content h3 {
+    color: #a2c490;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    border-bottom: 1px solid #4a5c48;
+    padding-bottom: 3px;
+}
+
+.help-window .content p {
+    margin-bottom: 5px;
+}
+
+.help-window .content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.help-window .content ul li {
+    margin-bottom: 2px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.help-window .content ul li::before {
+    content: '> ';
+    position: absolute;
+    left: 0;
+    color: #a2c490;
+}
