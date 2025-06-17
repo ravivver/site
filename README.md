@@ -1,6 +1,6 @@
 # 🎮 Steam-like UI Personal Page
 
-![Interface Principal do Projeto](images/screenshot-main.png)
+![Interface Principal do Projeto](images/main.gif)
 
 ## 🔗 Ver Projeto Online
 
