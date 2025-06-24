@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>bub</title>
+  <link rel="icon" type="image/png" href="images/aphex.png">
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+  <div class="login-screen-wrapper">
+    <div class="login-window">
+      <div class="header-bar">
+        <span>Steam Login</span>
+        <div class="window-controls">
+          <button class="minimize">-</button>
+          <button class="close">×</button>
+        </div>
+      </div>
+      <div class="login-content">
+        <label>Account name</label>
+        <input type="text" placeholder="username" />
+        <label>Password</label>
+        <input type="password" placeholder="●●●●●●" />
+        <div class="remember">
+          <input type="checkbox" id="remember" />
+          <label for="remember">Remember my password</label>
+        </div>
+        <div class="buttons">
+          <button class="login-btn">Login</button>
+          <button class="cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="mainUI" class="hidden">
+    <div class="top-bar">
+      <nav class="main-menu">
+        <a href="#" class="main-menu-item" id="steam-menu-item">Steam</a>
+        <a href="#" class="main-menu-item" id="view-menu-item">View</a>
+        <a href="#" class="main-menu-item" id="friends-menu-item">Friends</a>
+        <a href="#" class="main-menu-item" id="games-menu-item">Games</a>
+        <a href="#" class="main-menu-item" id="help-menu-item">Help</a>
+      </nav>
+      <div class="window-controls-main-ui">
+        <button class="main-ui-control-button minimize-main-ui">-</button>
+        <button class="main-ui-control-button maximize-main-ui">▢</button>
+        <button class="main-ui-control-button close-main-ui">×</button>
+      </div>
+    </div>
+
+    <div class="secondary-nav-bar">
+      <div class="left-buttons">
+        <button class="nav-arrow-button">&lt;</button>
+        <button class="nav-arrow-button">&gt;</button>
+        <button class="steam-button active">Luiz</button>
+        <button class="steam-button console-button">Console</button>
+        <button class="steam-button music-player-open-button">Music Player</button>
+      </div>
+      <div class="right-controls">
+        <button class="nav-icon-button news-button" aria-label="Notícias"></button>
+        <button class="nav-icon-button notification-button" aria-label="Notificações"></button>
+        <div class="profile-box nav-profile-button">
+          <img src="images/perfil.jpg" alt="Profile Pic" class="profile-pic">
+          <span>Luiz</span>
+        </div>
+        <button class="nav-icon-button zoom-button-new" aria-label="Zoom/Expandir"></button>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="profile-info-box">
+        <div class="profile-header">
+          <span>Profile</span>
+          <div class="profile-controls">
+            <button class="profile-control-button minimize-profile">-</button>
+            <button class="profile-control-button close-profile">×</button>
+          </div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-picture-container">
+            <img src="images/perfil.jpg" alt="Profile Placeholder" class="profile-main-pic">
+          </div>
+          <div class="profile-text-content">
+            <span class="profile-name">Luiz</span>
+            <p class="profile-bio-text">Gordon Bless Us, Amen.</p>
+            <div class="level-display-container">
+              <span class="profile-level-text">Age</span>
+              <div class="profile-level-badge"><span>22</span></div>
+            </div>
+            <button class="edit-profile-button">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="console-box">
+        <div class="console-header">
+          <span>Console</span>
+          <div class="console-controls">
+            <button class="console-control-button minimize-console">-</button> <button class="console-control-button close-console">×</button>
+          </div>
+        </div>
+        <div class="console-body">
+          <div class="console-output">
+            <p>&gt; Luiz Benedito, 22 y/o.</p>
+            <p>&gt; Instagram: <span class="console-link" data-link="https://www.instagram.com/9benedito/">9benedito</span></p>
+            <p>&gt; Letterboxd: <a href="https://letterboxd.com/157/" target="_blank" class="console-link">157</a></p>
+            <p>&gt; Github: <a href="https://github.com/ravivver" target="_blank" class="console-link">ravivver</a></p>
+            <p>&gt; Discord: <span class="console-link copy-on-click" data-copy="unununununununununununununununun">unununununununununununununununun</span></p>
+            <p>&gt; Steam: <a href="https://steamcommunity.com/id/Realengo/" target="_blank" class="console-link">Realengo</a></p>
+            <p>&gt; Backloggd: <a href="https://backloggd.com/u/rpg/" target="_blank" class="console-link">rpg</a></p>
+          </div>
+          <div class="console-input-area">
+            <input type="text" class="console-input" placeholder="Enter command...">
+            <button class="console-submit-btn">Submit</button>
+          </div>
+        </div>
+        <div class="resize-handle bottom-right-resize-handle"></div>
+      </div>
+      
+      <div class="console-suggestions-outer-container hidden" id="console-suggestions-outer-container">
+        <div class="console-suggestions" id="console-suggestions"></div>
+      </div>
+      <img src="images/hl.png" alt="Personagens Half-Life" class="hl-decoration">
+
+      <div class="music-player-box">
+        <div class="player-header">
+          <span>Music Player</span>
+          <div class="player-controls">
+            <button class="player-control-button minimize-player">-</button> <button class="player-control-button close-player">×</button>
+          </div>
+        </div>
+        <div class="player-body">
+          <div class="album-art-container">
+            <img src="https://via.placeholder.com/100" alt="Album Art" class="album-art">
+          </div>
+          <div class="song-details">
+            <span class="song-title">Nome da Música</span>
+            <span class="song-artist">Nome do Artista</span>
+          </div>
+        </div>
+        <div class="player-footer">
+          <div class="progress-bar-container">
+            <input type="range" class="progress-bar" value="0" min="0" max="100">
+          </div>
+          <div class="player-buttons-volume">
+            <div class="playback-controls">
+              <button class="player-button prev-button icon-button-player trackback-icon"></button>
+              <button class="player-button play-pause-button icon-button-player play-icon"></button>
+              <button class="player-button next-button icon-button-player trackfwd-icon"></button>
+            </div>
+            <div class="volume-control">
+              <button class="volume-icon-button icon-button-player volume-icon"></button>
+              <input type="range" class="volume-slider" value="50" min="0" max="100">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <button class="add-game-button">Add a Game...</button>
+      <div class="downloads-info">
+        <span>DOWNLOADS</span>
+        <a href="#" class="manage-link" id="manage-link-button">Manage</a>
+      </div>
+      <button class="friends-chat-button">FRIENDS & CHAT</button>
+    </div>
+  </div>
+
+  <div class="chat-window hidden" data-chat-id="template">
+    <div class="chat-header">
+      <div class="chat-tabs" id="chat-tabs-container">
+        </div>
+      <div class="window-controls chat-window-controls">
+        <button class="minimize-chat">-</button>
+        <button class="close-chat">×</button>
+      </div>
+    </div>
+    <div class="chat-body">
+      <div class="messages-container">
+        </div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" placeholder="Type a message...">
+        <button class="send-message-button">Send</button>
+        <div class="chat-icons">
+          <button class="emoji-button"></button>
+          <button class="attach-button"></button>
+          <button class="mic-button"></button>
+        </div>
+      </div>
+    </div>
+    <div class="resize-handle bottom-right-resize-handle"></div>
+  </div>
+
+  <div class="friends-list-window hidden">
+    <div class="friends-header">
+      <span>Friends</span>
+      <div class="window-controls">
+        <button class="minimize-friends">-</button>
+        <button class="close-friends">×</button>
+      </div>
+    </div>
+    <div class="friends-body">
+      <div class="friend-item-me friend-item">
+        <img src="images/perfil.jpg" alt="Seu Avatar" class="friend-avatar">
+        <div class="friend-info">
+          <span class="friend-name">Luiz</span>
+          <span class="friend-status status-online">Online</span>
+        </div>
+      </div>
+
+      <div class="search-bar-container">
+          <input type="text" placeholder="Search...">
+      </div>
+
+      <div class="friend-category">In-Game (<span id="ingame-count">0</span>)</div>
+      <ul>
+        <li class="friend-item" data-friend-id="dream">
+          <img src="images/dream.jpg" alt="Avatar" class="friend-avatar">
+          <div class="friend-info">
+            <span class="friend-name">dream</span>
+            <span class="friend-status status-ingame">Minecraft</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="friend-category">Online (<span id="online-count">0</span>)</div>
+      <ul>
+          <li class="friend-item" data-friend-id="cloro">
+            <img src="https://avatars.fastly.steamstatic.com/2098c48aedf599c5564c276d4c9efc502b63e803_full.jpg" alt="Avatar" class="friend-avatar">
+            <div class="friend-info">
+              <span class="friend-name">cloro</span>
+              <span class="friend-status status-online">Online</span>
+            </div>
+          </li>
+      </ul>
+      
+      <div class="friend-category">Offline (<span id="offline-count">0</span>)</div>
+       <ul>
+          <li class="friend-item" data-friend-id="gman">
+            <img src="https://developer.valvesoftware.com/w/images/thumb/7/77/Gman_new.png/250px-Gman_new.png" alt="Avatar" class="friend-avatar">
+            <div class="friend-info">
+              <span class="friend-name">gman</span>
+              <span class="friend-status status-offline">Offline</span>
+            </div>
+          </li>
+      </ul>
+    </div>
+    <div class="friends-footer">
+        <a href="#" class="add-friend-button">+ ADD A FRIEND</a>
+    </div>
+    <div class="resize-handle bottom-right-resize-handle"></div>
+  </div>
+
+  <div id="headcrab-hunt-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: none; justify-content: center; align-items: center; flex-direction: column; z-index: 1001; cursor: pointer;">
+      </div>
+
+  <div id="empty-content-popup" class="empty-content-popup hidden">
+    <p>Nothing here, it's empty.</p>
+  </div>
+
+  <div id="help-window" class="help-window hidden">
+    <div class="header">
+      <span>Help & Info</span>
+      <div class="window-controls">
+        <button class="close-help-window">×</button>
+      </div>
+    </div>
+    <div class="content">
+      <h3>Console Commands:</h3>
+      <ul id="help-command-list">
+        </ul>
+      <h3>Website Curiosities:</h3>
+      <p>&gt; This is a Steam-like UI concept, made for fun and learning.</p>
+      <p>&gt; Profile Age is randomized each time you refresh the page.</p>
+      <p>&gt; G-Man might appear randomly! Keep an eye out.</p>
+      <p>&gt; The Music Player features tracks by Aphex Twin.</p>
+      <p>&gt; Try typing 'headcrab_hunt 1' in the console for a mini-game.</p>
+    </div>
+  </div>
+
+
+  <img id="gman-easter-egg" src="images/gman.png" style="position: fixed; bottom: 20px; right: 20px; width: 150px; opacity: 0; z-index: 999; pointer-events: none;">
+  <script type="module" src="scripts/login-script.js"></script>
+  <script type="module" src="scripts/profile-script.js"></script>
+  <script type="module" src="scripts/music-player-script.js"></script>
+  <script type="module" src="scripts/console-script.js"></script>
+  <script type="module" src="scripts/friends-list-script.js"></script>
+  <script type="module" src="scripts/drag-and-resize-utilities.js"></script>
+  <script type="module" src="scripts/chat-script.js"></script>
+  <script type="module" src="scripts/easter-eggs.js"></script>
+</body>
+</html>
