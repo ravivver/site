@@ -1,6 +1,8 @@
 # 🎮 Steam-like UI Personal Page
 
-![Interface Principal do Projeto](images/screenshot-main.png) ## 🚀 Sobre o Projeto
+<video src="https://github.com/user-attachments/assets/2a97d6f8-e5a8-4b65-bfea-92e8e28dfaf9" autoplay loop muted></video>
+
+## 🚀 Sobre o Projeto
 
 Este é um projeto pessoal, uma releitura de uma UI inspirada no cliente do Steam dos anos 2000 e a atual, mas com um toque de "MySpace" dos velhos tempos!
 
