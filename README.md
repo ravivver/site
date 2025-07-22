@@ -1,6 +1,6 @@
 # 🎮 Steam-like UI Personal Page
 
-<video src="https://github.com/user-attachments/assets/2a97d6f8-e5a8-4b65-bfea-92e8e28dfaf9" autoplay loop muted></video>
+![Interface Principal do Projeto](images/main.gif)
 
 ## 🚀 Sobre o Projeto
 
