@@ -1,12 +1,14 @@
-# 🎮 Steam-like UI Personal Page
+# Steam-like UI Personal Page
 
-![Interface Principal do Projeto](images/screenshot-main.png) ## 🚀 Sobre o Projeto
+![Interface Principal do Projeto](images/main.gif)
+
+## Sobre o Projeto
 
 Este é um projeto pessoal, uma releitura de uma UI inspirada no cliente do Steam dos anos 2000 e a atual, mas com um toque de "MySpace" dos velhos tempos!
 
 A ideia principal é criar uma página pessoal interativa, um cantinho virtual onde eu possa compartilhar um pouco sobre mim, minhas redes sociais e meus gostos, tudo isso dentro de um design que remete à nostalgia dos jogos e plataformas sociais do início dos anos 2000. Não é um portfólio sério no sentido tradicional, mas sim um playground para experimentação com HTML, CSS e JavaScript.
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 -   **Tela de Login Interativa:** Uma tela de login animada com som de inicialização e fade-out ao entrar! (Você não precisa de fato utilizar um login/senha, apenas clique em login!).
 -   **Interface Principal Steam-like:** Navegação superior e lateral, replicando a estética do cliente Steam.
@@ -20,13 +22,8 @@ A ideia principal é criar uma página pessoal interativa, um cantinho virtual o
 -   **Modo Tela Cheia:** Um botão dedicado para alternar o modo de tela cheia do navegador.
 -   **Easter Eggs Escondidos:** Fique de olho em aparições inesperadas! (Dica: tente clicar nos botões principais e no console).
 
-## 🛠️ Tecnologias Utilizadas
 
--   **HTML5:** Estrutura da página.
--   **CSS3:** Estilização e animações, recriando o visual retrô.
--   **JavaScript (ES6+):** Lógica interativa, manipulação do DOM, arraste e redimensionamento de janelas, controle de áudio e funcionalidades do console.
-
-## 🚀 Como Rodar o Projeto Localmente
+## Como Rodar 
 
 1.  **Clone o repositório:**
     ```bash
@@ -38,7 +35,3 @@ A ideia principal é criar uma página pessoal interativa, um cantinho virtual o
     ```
 3.  **Abra o arquivo `index.html` no seu navegador:**
     Você pode simplesmente dar um duplo clique no arquivo `index.html` ou usar a extensão "Live Server" se estiver usando VS Code para um ambiente de desenvolvimento mais fácil.
-
-## 🤝 Contribuição
-
-Este é um projeto pessoal para aprendizado e diversão. Contribuições diretas não são esperadas, mas sinta-se à vontade para fazer um "fork" do repositório, experimentar e criar sua própria versão :D
