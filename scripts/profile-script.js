@@ -34,6 +34,27 @@ const allConsoleCommands = [
     'whoami', 'exec', 'sv_cheats', 'bind', 'lambda_locator', 'headcrab_hunt'
 ];
 
+// Função para calcular e exibir a idade
+function calculateAndDisplayAge() {
+    const birthDate = new Date('2002-10-22');
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+
+    const ageProfileElement = document.getElementById('age-profile');
+    const ageConsoleElement = document.getElementById('age-console');
+
+    if (ageProfileElement) {
+        ageProfileElement.textContent = age;
+    }
+    if (ageConsoleElement) {
+        ageConsoleElement.textContent = age;
+    }
+}
+
 
 // Função genérica para exibir feedback (Access Denied)
 function showAccessDeniedFeedback(targetElement, isFalling = false) {
@@ -62,6 +83,7 @@ function showAccessDeniedFeedback(targetElement, isFalling = false) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    calculateAndDisplayAge();
     if (profileBox && profileInfoBox) {
         profileBox.addEventListener('click', () => {
             profileInfoBox.classList.remove('hidden');
